@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 :root {
+  font-size: 1rem;
   --white: #EAEAEA;
   --semi-white: #BEBEBF;
   --background: #121215;
@@ -11,6 +12,30 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #2c2c31;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #9e9ea0;
+}
+
+@keyframes entering {
+  from {
+    opacity: 0;
+    transform: translateY(-250px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 body {
   color: var(--white);
@@ -37,6 +62,10 @@ aside {
   background-size: auto 100%; 
 }
 
+aside * {
+  animation: entering 1s ease-in-out;
+} /*animation se aplica apenas aos elementos (fundo e borda fixos)*/
+
 aside img:nth-child(2) {
   width: 170px;
   height: 160px;
@@ -51,6 +80,7 @@ aside p {
 }
 
 aside span {
+  transform: 
   font-size: 0.75rem; /*12px = 0.75rem*/
   color: #9e9ea0;
 }
@@ -58,7 +88,8 @@ aside span {
 nav {
   grid-area: timeline;
   padding: 64px;
-  overflow-y: scroll;
+  overflow-y: scroll; 
+  animation: entering 1s ease-in-out;
 }
 
 .memory {
@@ -84,6 +115,18 @@ nav {
   height: 280px;
   object-fit: cover;
   border-radius: 8px;
+  transition: transform 0.3s ease-in-out; /*propriedade: em que, tempo, modo de suavização*/
+}
+
+.memory div {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  border-radius: 8px;
+} /*estratégia: criar <duv> para <img> com propriedade overflow: hidden; para dar efeito de zoom*/
+
+.memory:hover img {
+  transform: scale(1.1);
 }
 
 .memory p {
@@ -92,3 +135,26 @@ nav {
   color: var(--semi-white);
 }
 
+@media (max-width: 768px) {
+  :root {
+    font-size: 14px;
+  }
+
+  body {
+    grid-template-columns: 1fr; /*1 coluna*/
+    grid-template-rows: 0.2fr 0.8fr; /*80% de exibição*/
+    grid-template-areas:
+    "profile"
+    "timeline";
+  }
+
+  aside {
+    border-right: none;
+    padding: 32px 32px;
+  }
+
+  nav {
+    overflow-y: visible;
+    padding: 22px; 
+  }
+}
