@@ -85,6 +85,18 @@ aside span {
   color: #9e9ea0;
 }
 
+aside a {
+  text-decoration: none;
+  text-align: center;
+  color: white;
+  border: 2px solid white;
+  padding: 10px;
+  padding-top: 15px;
+  border-radius: 50px;
+  width: 250px;
+  height: 50px;
+}
+
 nav {
   grid-area: timeline;
   padding: 64px;
